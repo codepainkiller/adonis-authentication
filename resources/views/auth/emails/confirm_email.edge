@@ -1,0 +1,9 @@
+<p>Hi {{ username }}</p>
+
+<p>
+    Welcome to AdonisJS, please confirm your email address by clicking  the link below:
+</p>
+
+<p>
+    <a href="{{ appUrl('register/confirm/' + confirmation_token) }}">Confirm address</a>
+</p>

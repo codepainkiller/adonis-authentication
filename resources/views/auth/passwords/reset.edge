@@ -1,0 +1,57 @@
+@layout('layout.app')
+
+@section('content')
+    <div class="columns">
+        <div class="column is-4 is-offset-4">
+            <h1 class="title has-text-centered">Reset password</h1>
+
+            @include('includes.notification')
+
+            <form action="/password/reset" method="post">
+                {{ csrfField() }}
+
+                <input name="token" type="hidden" value="{{ token }}">
+
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                        <input name="email"
+                               type="email"
+                               class="input {{ hasErrorFor('email') ? 'is-danger' : '' }}"
+                               value="{{ old('email', '') }}">
+                    </div>
+
+                    {{ elIf('<span class="help is-danger">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+                </div>
+
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                        <input name="password"
+                               type="password"
+                               class="input {{ hasErrorFor('password') ? 'is-danger' : '' }}"
+                               value="{{ old('password', '') }}">
+                    </div>
+
+                    {{ elIf('<span class="help is-danger">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+                </div>
+
+                <div class="field">
+                    <label class="label">Confirm Password</label>
+                    <div class="control">
+                        <input name="password_confirmation"
+                               type="password"
+                               class="input {{ hasErrorFor('password_confirmation') ? 'is-danger' : '' }}"
+                               value="{{ old('password_confirmation', '') }}">
+                    </div>
+
+                    {{ elIf('<span class="help is-danger">$self</span>', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}
+                </div>
+
+                <div class="control">
+                    <button type="submit" class="button is-dark is-fullwidth is-capitalized">Reset Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
